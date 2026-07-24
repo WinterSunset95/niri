@@ -18,6 +18,12 @@ binds {
     Mod+O {
       spawn "noctalia" "msg" "panel-toggle" "control-center calendar"
     }
+    Mod+E {
+      spawn "noctalia" "msg" "panel-toggle" "wallpaper"
+    }
+    Mod+C {
+      spawn "noctalia" "msg" "panel-toggle" "control-center"
+    }
 
 
     // === Audio Controls ===
@@ -182,7 +188,7 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+Ctrl+F { expand-column-to-available-width; }
-    Mod+C { center-column; }
+    // Mod+C { center-column; }
     Mod+Ctrl+C { center-visible-columns; }
 
     // === Manual Sizing ===
