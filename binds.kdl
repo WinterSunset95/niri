@@ -26,10 +26,11 @@ binds {
     }
 
     Mod+Shift+S {
-      // switch-preset-column-width
-      // switch-preset-window-height
-      // toggle-window-floating;
-      spawn "nsticky" "sticky" "toggle-sctive";
+      spawn "scripts/window" "sticky" "Stream";
+    }
+
+    Mod+Ctrl+S {
+      spawn "scripts/window" "show" "Stream";
     }
 
 
