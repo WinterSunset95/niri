@@ -25,6 +25,13 @@ binds {
       spawn "noctalia" "msg" "panel-toggle" "control-center"
     }
 
+    Mod+Shift+S {
+      // switch-preset-column-width
+      // switch-preset-window-height
+      // toggle-window-floating;
+      spawn "nsticky" "sticky" "toggle-sctive";
+    }
+
 
     // === Audio Controls ===
     Mod+Ctrl+Up hotkey-overlay-title="Volume up" {
@@ -68,8 +75,8 @@ binds {
     Mod+Q repeat=false { close-window; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
-    Mod+Shift+T { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+Space { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
     // Mod+Shift+W hotkey-overlay-title="Create window rule" { spawn "dms" "ipc" "call" "window-rules" "toggle"; }
 

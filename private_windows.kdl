@@ -1,0 +1,17 @@
+// Hidden windows
+window-rule {
+  match app-id="Beeper"
+  match title="web.whatsapp.com"
+  match app-id="brave-instagram.com__-Default"
+  match app-id="com.obsproject.Studio"
+  match app-id="vesktop"
+  // match title="inushinobi's Stream"
+  match title=r#"^*Stream$"#
+  // match app-id="Emulator"
+  block-out-from "screencast"
+}
+layer-rule {
+  match namespace="noctalia-notification"
+  block-out-from "screencast"
+}
+

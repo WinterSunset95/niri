@@ -1,0 +1,45 @@
+#!/bin/sh
+
+monitor_text=$(niri msg -j outputs)
+# monitor_width=$(awk '/Logical size:/ { split($3, dims, "x"); print dims[1]; exit }' <<< $monitor_text)
+# monitor_height=$(awk '/Logical size:/ { split($3, dims, "x"); print dims[2]; exit }' <<< $monitor_text)
+monitor_id=$(jq 'keys_unsorted[0]' <<< $monitor_text)
+monitor_width=$(jq ".$monitor_id.logical.width" <<< $monitor_text)
+monitor_height=$(jq ".$monitor_id.logical.height" <<< $monitor_text)
+echo $monitor_width
+echo $monitor_height
+
+window_obj=$(niri msg -j windows | jq '. | map(select(.title | contains("Stream")))' | jq '.[0]')
+window_id=$(jq '.id' <<< $window_obj)
+window_title=$(jq '.title' <<< $window_obj)
+window_float=$(jq '.is_floating' <<< $window_obj)
+if [[ "$window_float" == "false" ]]; then
+  echo "Window is not floating"
+  niri msg action toggle-window-floating --id $window_id
+  niri msg action set-window-width 480 --id $window_id
+  niri msg action set-window-height 270 --id $window_id
+fi
+
+if [[ "$1" == "show" ]]; then
+  window_x=$(jq '.layout.window_offset_in_tile.[0]' <<< $window_obj)
+  window_y=$(jq '.layout.window_offset_in_tile.[1]' <<< $window_obj)
+  window_x=$(awk '{print int($1)}' <<< $window_x)
+  window_y=$(awk '{print int($1)}' <<< $window_y)
+  echo $window_x
+  if [[ $window_x -lt $monitor_width ]]; then
+    niri msg action move-floating-window -x $monitor_width -y $((monitor_height - window_height)) --id $window_id
+  else
+    niri msg action move-floating-window -x 0 -y 0 --id $window_id
+  fi
+elif [[ "$1" == "sticky" ]]; then
+  echo ""
+else
+  echo "Please use either arguments show or sticky"
+fi
+
+
+echo $window_obj | jq .
+window_width=$(jq '.layout.window_size.[0]' <<< $window_obj)
+window_height=$(jq '.layout.window_size.[1]' <<< $window_obj)
+echo $window_width
+echo $window_height

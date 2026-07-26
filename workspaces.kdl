@@ -1,0 +1,17 @@
+// Window-workspace binds
+window-rule {
+  match app-id="org.qutebrowser.qutebrowser"
+  open-on-workspace "browser"
+}
+window-rule {
+  match app-id="Emulator"
+  open-on-workspace "emulator"
+}
+window-rule {
+  match app-id="Beeper"
+  match title="web.whatsapp.com"
+  match app-id="brave-instagram.com__-Default"
+  match app-id="discord"
+  match app-id="vesktop"
+  open-on-workspace "chat"
+}
