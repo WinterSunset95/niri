@@ -160,6 +160,7 @@ layer-rule {
     // match namespace="noctalia-backdrop"
     // match namespace="noctalia-wallpaper"
     match namespace="^*$"
+    match namespace="cava-visualizer"
     place-within-backdrop true
 }
 overview {
@@ -232,6 +233,7 @@ window-rule {
   opacity 0.9
   background-effect {
     blur true
+    xray false
   }
 }
 window-rule {
